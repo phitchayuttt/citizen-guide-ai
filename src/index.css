@@ -17,8 +17,11 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Thai Government Blue Theme */
+    --primary: 214 100% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 214 100% 45%;
+    --primary-dark: 214 100% 25%;
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -26,15 +29,30 @@ All colors MUST be HSL.
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 214 100% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Thai Red for Important Notifications */
+    --thai-red: 0 73% 48%;
+    --thai-red-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 214 100% 35%;
+
+    /* Custom gradients */
+    --gradient-thai: linear-gradient(135deg, hsl(214 100% 35%), hsl(214 100% 45%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 40% 98%));
+    --gradient-warning: linear-gradient(135deg, hsl(45 100% 60%), hsl(45 100% 70%));
+    --gradient-danger: linear-gradient(135deg, hsl(0 73% 48%), hsl(0 73% 58%));
+
+    /* Shadows */
+    --shadow-thai: 0 4px 20px -2px hsl(214 100% 35% / 0.15);
+    --shadow-card: 0 2px 8px -1px hsl(214 30% 20% / 0.08);
+    --shadow-elevated: 0 8px 30px -4px hsl(214 100% 35% / 0.2);
 
     --radius: 0.5rem;
 
