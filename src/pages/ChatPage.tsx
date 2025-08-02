@@ -108,27 +108,27 @@ const ChatPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-primary/5">
-      <div className="max-w-4xl mx-auto p-4 h-screen flex flex-col">
+      <div className="max-w-4xl mx-auto p-2 sm:p-4 h-screen flex flex-col">
         {/* Header */}
-        <Card className="mb-4 shadow-[var(--shadow-elevated)]">
-          <CardHeader className="bg-gradient-to-r from-primary to-primary-light text-primary-foreground rounded-t-lg">
-            <CardTitle className="flex items-center space-x-3">
+        <Card className="mb-2 sm:mb-4 shadow-[var(--shadow-elevated)]">
+          <CardHeader className="bg-gradient-to-r from-primary to-primary-light text-primary-foreground rounded-t-lg p-3 sm:p-6">
+            <CardTitle className="flex items-center space-x-2 sm:space-x-3">
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="text-primary-foreground hover:bg-white/10"
+                className="text-primary-foreground hover:bg-white/10 h-8 w-8 sm:h-10 sm:w-10"
                 onClick={() => navigate('/')}
               >
-                <ArrowLeft className="h-5 w-5" />
+                <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
-              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
-                <Bot className="h-6 w-6" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-lg flex items-center justify-center">
+                <Bot className="h-4 w-4 sm:h-6 sm:w-6" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold">{t('chat.title')}</h1>
-                <p className="text-sm text-primary-foreground/90">{t('chat.subtitle')}</p>
+              <div className="flex-1 min-w-0">
+                <h1 className="text-base sm:text-xl font-bold truncate">{t('chat.title')}</h1>
+                <p className="text-xs sm:text-sm text-primary-foreground/90 hidden sm:block">{t('chat.subtitle')}</p>
               </div>
-              <Badge className="bg-green-500 text-white">
+              <Badge className="bg-green-500 text-white text-xs hidden sm:flex">
                 <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
                 {t('chat.online')}
               </Badge>
@@ -137,28 +137,28 @@ const ChatPage = () => {
         </Card>
 
         {/* Chat Messages */}
-        <Card className="flex-1 mb-4 shadow-[var(--shadow-card)]">
+        <Card className="flex-1 mb-2 sm:mb-4 shadow-[var(--shadow-card)]">
           <CardContent className="p-0 h-full flex flex-col">
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-3 sm:space-y-4">
               {messages.map((message) => (
                 <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`flex items-start space-x-3 max-w-[80%] ${message.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                  <div className={`flex items-start space-x-2 sm:space-x-3 max-w-[85%] sm:max-w-[80%] ${message.type === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
                     {/* Avatar */}
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                    <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
                       message.type === 'user' 
                         ? 'bg-primary text-primary-foreground' 
                         : 'bg-gradient-to-r from-primary to-primary-light text-primary-foreground'
                     }`}>
-                      {message.type === 'user' ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
+                      {message.type === 'user' ? <User className="h-3 w-3 sm:h-4 sm:w-4" /> : <Bot className="h-3 w-3 sm:h-4 sm:w-4" />}
                     </div>
 
                     {/* Message Bubble */}
-                    <div className={`rounded-lg p-4 ${
+                    <div className={`rounded-lg p-3 sm:p-4 ${
                       message.type === 'user'
                         ? 'bg-primary text-primary-foreground'
                         : 'bg-muted text-muted-foreground'
                     }`}>
-                      <p className="whitespace-pre-wrap">{message.content}</p>
+                      <p className="whitespace-pre-wrap text-sm sm:text-base">{message.content}</p>
                       <p className={`text-xs mt-2 ${
                         message.type === 'user' ? 'text-primary-foreground/70' : 'text-muted-foreground/70'
                       }`}>
@@ -172,16 +172,16 @@ const ChatPage = () => {
                       {message.suggestions && message.type === 'bot' && (
                         <div className="mt-3 space-y-2">
                           <p className="text-xs font-medium">{t('chat.faq')}</p>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-1 sm:gap-2">
                             {message.suggestions.map((suggestion, index) => (
                               <Button
                                 key={index}
                                 variant="outline"
                                 size="sm"
-                                className="text-xs"
+                                className="text-xs h-7 px-2 sm:h-8 sm:px-3"
                                 onClick={() => handleQuickSuggestion(suggestion)}
                               >
-                                {suggestion}
+                                <span className="truncate max-w-28 sm:max-w-none">{suggestion}</span>
                               </Button>
                             ))}
                           </div>
@@ -195,11 +195,11 @@ const ChatPage = () => {
               {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="flex items-start space-x-3 max-w-[80%]">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-primary-light text-primary-foreground flex items-center justify-center">
-                      <Bot className="h-4 w-4" />
+                  <div className="flex items-start space-x-2 sm:space-x-3 max-w-[85%] sm:max-w-[80%]">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-primary to-primary-light text-primary-foreground flex items-center justify-center">
+                      <Bot className="h-3 w-3 sm:h-4 sm:w-4" />
                     </div>
-                    <div className="bg-muted text-muted-foreground rounded-lg p-4">
+                    <div className="bg-muted text-muted-foreground rounded-lg p-3 sm:p-4">
                       <div className="flex space-x-1">
                         <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce"></div>
                         <div className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -214,13 +214,13 @@ const ChatPage = () => {
             </div>
 
             {/* Input Area */}
-            <div className="border-t border-border p-4">
-              <div className="flex space-x-3">
+            <div className="border-t border-border p-3 sm:p-4">
+              <div className="flex space-x-2 sm:space-x-3">
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder={t('chat.inputPlaceholder')}
-                  className="flex-1"
+                  className="flex-1 text-sm sm:text-base"
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
                       handleSendMessage(inputValue);
@@ -231,27 +231,28 @@ const ChatPage = () => {
                 <Button 
                   variant="thai" 
                   size="icon"
+                  className="h-9 w-9 sm:h-10 sm:w-10"
                   onClick={() => handleSendMessage(inputValue)}
                   disabled={!inputValue.trim() || isTyping}
                 >
-                  <Send className="h-4 w-4" />
+                  <Send className="h-3 w-3 sm:h-4 sm:w-4" />
                 </Button>
               </div>
 
               {/* Quick Suggestions at bottom */}
               <div className="mt-3">
                 <p className="text-xs text-muted-foreground mb-2">{t('chat.popularQuestions')}:</p>
-                <div className="flex flex-wrap gap-2">
-                  {quickSuggestions.slice(0, 4).map((suggestion, index) => (
+                <div className="flex flex-wrap gap-1 sm:gap-2">
+                  {quickSuggestions.slice(0, window.innerWidth < 640 ? 2 : 4).map((suggestion, index) => (
                     <Button
                       key={index}
                       variant="outline"
                       size="sm"
-                      className="text-xs"
+                      className="text-xs h-7 px-2 sm:h-8 sm:px-3"
                       onClick={() => handleQuickSuggestion(suggestion)}
                       disabled={isTyping}
                     >
-                      {suggestion}
+                      <span className="truncate max-w-24 sm:max-w-none">{suggestion}</span>
                     </Button>
                   ))}
                 </div>

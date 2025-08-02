@@ -85,38 +85,40 @@ const AISummarize = () => {
           ระบบวิเคราะห์ข้อมูลของคุณและแนะนำบริการที่ควรใช้ในช่วงนี้
         </p>
       </CardHeader>
-      <CardContent className="p-6 space-y-6">
+      <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
         {mockRecommendations.map((rec) => (
-          <div key={rec.id} className="border border-border rounded-lg p-5 bg-gradient-to-br from-card to-muted/30 hover:shadow-[var(--shadow-card)] transition-shadow">
-            <div className="flex items-start justify-between mb-3">
+          <div key={rec.id} className="border border-border rounded-lg p-3 sm:p-5 bg-gradient-to-br from-card to-muted/30 hover:shadow-[var(--shadow-card)] transition-shadow">
+            <div className="flex flex-col space-y-3 mb-3">
               <div className="flex-1">
-                <div className="flex items-center space-x-2 mb-2">
-                  <h3 className="font-semibold text-lg text-foreground">{rec.title}</h3>
-                  <Badge className={getPriorityColor(rec.priority)}>
-                    {getPriorityText(rec.priority)}
-                  </Badge>
-                  <Badge variant="outline">{rec.category}</Badge>
+                <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 mb-2">
+                  <h3 className="font-semibold text-base sm:text-lg text-foreground">{rec.title}</h3>
+                  <div className="flex space-x-2">
+                    <Badge className={`${getPriorityColor(rec.priority)} text-xs`}>
+                      {getPriorityText(rec.priority)}
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">{rec.category}</Badge>
+                  </div>
                 </div>
-                <p className="text-muted-foreground mb-3">{rec.description}</p>
+                <p className="text-sm sm:text-base text-muted-foreground mb-3">{rec.description}</p>
                 
-                <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 text-xs sm:text-sm text-muted-foreground mb-4">
                   <div className="flex items-center space-x-1">
-                    <Clock className="h-4 w-4" />
+                    <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                     <span>ครบกำหนด: {rec.dueDate}</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                    <MapPin className="h-4 w-4" />
-                    <span>{rec.location}</span>
+                    <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+                    <span className="truncate">{rec.location}</span>
                   </div>
                 </div>
 
                 <div className="mb-4">
-                  <p className="text-sm font-medium text-foreground mb-2">แอปที่แนะนำ:</p>
-                  <div className="flex flex-wrap gap-2">
+                  <p className="text-xs sm:text-sm font-medium text-foreground mb-2">แอปที่แนะนำ:</p>
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
                     {rec.apps.map((app, index) => (
-                      <Button key={index} variant="outline" size="sm" className="text-xs">
-                        {app}
-                        <ExternalLink className="h-3 w-3 ml-1" />
+                      <Button key={index} variant="outline" size="sm" className="text-xs h-7 px-2 sm:h-8 sm:px-3">
+                        <span className="truncate max-w-20 sm:max-w-none">{app}</span>
+                        <ExternalLink className="h-3 w-3 ml-1 flex-shrink-0" />
                       </Button>
                     ))}
                   </div>
@@ -124,11 +126,11 @@ const AISummarize = () => {
               </div>
             </div>
             
-            <div className="flex justify-end space-x-2">
-              <Button variant="outline" size="sm">
+            <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-2">
+              <Button variant="outline" size="sm" className="text-xs sm:text-sm">
                 ดูรายละเอียด
               </Button>
-              <Button variant="thai" size="sm">
+              <Button variant="thai" size="sm" className="text-xs sm:text-sm">
                 ดำเนินการ
               </Button>
             </div>

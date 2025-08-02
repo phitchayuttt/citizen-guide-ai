@@ -44,18 +44,20 @@ const StatsOverview = () => {
     }
   ];
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
       {statsData.map((stat, index) => (
         <Card key={index} className="shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-elevated)] transition-shadow bg-gradient-to-br from-card to-muted/30">
-          <CardContent className="p-6">
+          <CardContent className="p-3 sm:p-4 lg:p-6">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground mb-1">{stat.title}</p>
-                <p className="text-3xl font-bold text-foreground">{stat.value}</p>
-                <p className="text-xs text-muted-foreground">{stat.description}</p>
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm font-medium text-muted-foreground mb-1 truncate">{stat.title}</p>
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground">{stat.value}</p>
+                <p className="text-xs text-muted-foreground hidden sm:block">{stat.description}</p>
               </div>
-              <div className={`${stat.color} opacity-80`}>
-                {stat.icon}
+              <div className={`${stat.color} opacity-80 ml-2 flex-shrink-0`}>
+                <div className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 flex items-center justify-center">
+                  {stat.icon}
+                </div>
               </div>
             </div>
           </CardContent>
