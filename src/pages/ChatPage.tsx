@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Bot, User, Sparkles } from "lucide-react";
+import { Send, Bot, User, Sparkles, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -30,6 +31,7 @@ const quickSuggestions = [
 ];
 
 const ChatPage = () => {
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -109,6 +111,14 @@ const ChatPage = () => {
         <Card className="mb-4 shadow-[var(--shadow-elevated)]">
           <CardHeader className="bg-gradient-to-r from-primary to-primary-light text-primary-foreground rounded-t-lg">
             <CardTitle className="flex items-center space-x-3">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="text-primary-foreground hover:bg-white/10"
+                onClick={() => navigate('/')}
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
               <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
                 <Bot className="h-6 w-6" />
               </div>
