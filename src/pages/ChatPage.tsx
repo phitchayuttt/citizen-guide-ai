@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Send, Bot, User, Sparkles, ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -32,11 +33,12 @@ const quickSuggestions = [
 
 const ChatPage = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
       type: 'bot',
-      content: 'สวัสดีครับ คุณสมชาย! ผมเป็นผู้ช่วย AI ของระบบบริการประชาชน ผมสามารถช่วยแนะนำบริการต่างๆ ตอบคำถาม และให้คำปรึกษาเกี่ยวกับการใช้บริการภาครัฐได้ครับ มีอะไรให้ช่วยไหมครับ?',
+      content: t('chat.greeting'),
       timestamp: new Date(),
       suggestions: quickSuggestions.slice(0, 3)
     }
@@ -123,12 +125,12 @@ const ChatPage = () => {
                 <Bot className="h-6 w-6" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">ผู้ช่วย AI บริการประชาชน</h1>
-                <p className="text-sm text-primary-foreground/90">พร้อมช่วยเหลือและแนะนำบริการภาครัฐ 24/7</p>
+                <h1 className="text-xl font-bold">{t('chat.title')}</h1>
+                <p className="text-sm text-primary-foreground/90">{t('chat.subtitle')}</p>
               </div>
               <Badge className="bg-green-500 text-white">
                 <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                ออนไลน์
+                {t('chat.online')}
               </Badge>
             </CardTitle>
           </CardHeader>
@@ -169,7 +171,7 @@ const ChatPage = () => {
                       {/* Suggestions */}
                       {message.suggestions && message.type === 'bot' && (
                         <div className="mt-3 space-y-2">
-                          <p className="text-xs font-medium">คำถามที่ถามบ่อย:</p>
+                          <p className="text-xs font-medium">{t('chat.faq')}</p>
                           <div className="flex flex-wrap gap-2">
                             {message.suggestions.map((suggestion, index) => (
                               <Button
@@ -217,7 +219,7 @@ const ChatPage = () => {
                 <Input
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  placeholder="พิมพ์คำถามของคุณ..."
+                  placeholder={t('chat.inputPlaceholder')}
                   className="flex-1"
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
@@ -238,7 +240,7 @@ const ChatPage = () => {
 
               {/* Quick Suggestions at bottom */}
               <div className="mt-3">
-                <p className="text-xs text-muted-foreground mb-2">คำถามยอดนิยม:</p>
+                <p className="text-xs text-muted-foreground mb-2">{t('chat.popularQuestions')}:</p>
                 <div className="flex flex-wrap gap-2">
                   {quickSuggestions.slice(0, 4).map((suggestion, index) => (
                     <Button

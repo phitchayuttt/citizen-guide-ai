@@ -2,10 +2,14 @@ import { Bell, User, Menu, MessageCircle, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguage();
   return (
     <header className="bg-gradient-to-r from-primary to-primary-light shadow-[var(--shadow-elevated)] border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,8 +26,8 @@ const Header = () => {
                 <span className="text-primary font-bold text-lg">🇹🇭</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-primary-foreground cursor-pointer" onClick={() => navigate('/')}>ระบบบริการประชาชน</h1>
-                <p className="text-sm text-primary-foreground/80 hidden sm:block">AI Government Services Recommendation</p>
+                <h1 className="text-xl font-bold text-primary-foreground cursor-pointer" onClick={() => navigate('/')}>{t('header.title')}</h1>
+                <p className="text-sm text-primary-foreground/80 hidden sm:block">{t('header.subtitle')}</p>
               </div>
             </div>
           </div>
@@ -36,7 +40,7 @@ const Header = () => {
               onClick={() => navigate('/')}
             >
               <Home className="h-4 w-4 mr-2" />
-              หน้าหลัก
+              {t('header.home')}
             </Button>
             <Button 
               variant={location.pathname === '/chat' ? 'secondary' : 'ghost'} 
@@ -44,12 +48,14 @@ const Header = () => {
               onClick={() => navigate('/chat')}
             >
               <MessageCircle className="h-4 w-4 mr-2" />
-              ผู้ช่วย AI
+              {t('header.aiAssistant')}
             </Button>
           </div>
 
           {/* User Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">{/* Theme and Language toggles */}
+            <ThemeToggle />
+            <LanguageToggle />
             {/* Notifications */}
             <div className="relative">
               <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-white/10">
@@ -63,8 +69,8 @@ const Header = () => {
             {/* User Profile */}
             <div className="flex items-center space-x-3">
               <div className="hidden sm:block text-right">
-                <p className="text-sm font-medium text-primary-foreground">นายสมชาย ใจดี</p>
-                <p className="text-xs text-primary-foreground/80">1-2345-67890-12-3</p>
+                <p className="text-sm font-medium text-primary-foreground">{t('header.userName')}</p>
+                <p className="text-xs text-primary-foreground/80">{t('header.userId')}</p>
               </div>
               <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-white/10">
                 <User className="h-5 w-5" />

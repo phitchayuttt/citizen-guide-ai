@@ -2,6 +2,7 @@ import { Calendar, AlertTriangle, CheckCircle } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Document {
   id: string;
@@ -78,12 +79,13 @@ const getStatusText = (status: string, days: number) => {
 };
 
 const DocumentStatus = () => {
+  const { t } = useLanguage();
   return (
     <Card className="shadow-[var(--shadow-card)]">
       <CardHeader>
         <CardTitle className="flex items-center space-x-2">
           <Calendar className="h-5 w-5 text-primary" />
-          <span>สถานะเอกสารสำคัญ</span>
+          <span>{t('docs.title')}</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">

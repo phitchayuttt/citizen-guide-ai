@@ -1,5 +1,6 @@
 import { FileText, AlertCircle, CheckCircle, Clock } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface StatCard {
   title: string;
@@ -9,38 +10,39 @@ interface StatCard {
   color: string;
 }
 
-const statsData: StatCard[] = [
-  {
-    title: "เอกสารทั้งหมด",
-    value: "8",
-    description: "เอกสารในระบบ",
-    icon: <FileText className="h-8 w-8" />,
-    color: "text-primary"
-  },
-  {
-    title: "ต้องดำเนินการ",
-    value: "2",
-    description: "เอกสารกำลังหมดอายุ", 
-    icon: <AlertCircle className="h-8 w-8" />,
-    color: "text-yellow-600"
-  },
-  {
-    title: "ใช้งานได้",
-    value: "5",
-    description: "เอกสารยังไม่หมดอายุ",
-    icon: <CheckCircle className="h-8 w-8" />,
-    color: "text-green-600"
-  },
-  {
-    title: "หมดอายุแล้ว",
-    value: "1",
-    description: "ต้องต่ออายุด่วน",
-    icon: <Clock className="h-8 w-8" />,
-    color: "text-thai-red"
-  }
-];
-
 const StatsOverview = () => {
+  const { t } = useLanguage();
+  
+  const statsData: StatCard[] = [
+    {
+      title: t('stats.totalRequests'),
+      value: "8",
+      description: t('stats.pendingDocs'),
+      icon: <FileText className="h-8 w-8" />,
+      color: "text-primary"
+    },
+    {
+      title: t('stats.pendingDocs'),
+      value: "2",
+      description: "เอกสารกำลังหมดอายุ", 
+      icon: <AlertCircle className="h-8 w-8" />,
+      color: "text-yellow-600"
+    },
+    {
+      title: t('stats.completedTasks'),
+      value: "5",
+      description: "เอกสารยังไม่หมดอายุ",
+      icon: <CheckCircle className="h-8 w-8" />,
+      color: "text-green-600"
+    },
+    {
+      title: t('stats.activeApps'),
+      value: "1",
+      description: "ต้องต่ออายุด่วน",
+      icon: <Clock className="h-8 w-8" />,
+      color: "text-thai-red"
+    }
+  ];
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {statsData.map((stat, index) => (
