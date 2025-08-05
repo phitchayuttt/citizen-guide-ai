@@ -1,5 +1,5 @@
+
 import Header from "@/components/Header";
-import StatsOverview from "@/components/StatsOverview";
 import DocumentStatus from "@/components/DocumentStatus";
 import AISummarize from "@/components/AISummarize";
 
@@ -13,11 +13,6 @@ const Index = () => {
         <div className="mb-6 sm:mb-8">
           <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">สวัสดี นายสมชาย ใจดี</h2>
           <p className="text-sm sm:text-base text-muted-foreground">นี่คือภาพรวมบริการและสถานะเอกสารของคุณ</p>
-        </div>
-
-        {/* Stats Overview */}
-        <div className="mb-6 sm:mb-8">
-          <StatsOverview />
         </div>
 
         {/* Main Content Grid */}

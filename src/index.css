@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,33 +11,33 @@
     --card-foreground: 0 0% 0%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
-    --primary: 162 100% 40%; /* 00CE93 */
+    --primary: 162 100% 30%; /* Darker green - 00A574 */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 162 100% 50%;
-    --primary-dark: 162 100% 30%;
+    --primary-light: 162 100% 35%;
+    --primary-dark: 162 100% 25%;
     --secondary: 0 0% 89%; /* E2E2E2 */
     --secondary-foreground: 0 0% 0%;
     --muted: 0 0% 67%; /* ABAAAA */
     --muted-foreground: 0 0% 25%;
-    --accent: 162 100% 40%;
+    --accent: 162 100% 30%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 67%;
     --input: 0 0% 89%;
-    --ring: 162 100% 40%;
+    --ring: 162 100% 30%;
     --radius: 0.5rem;
     --thai-red: 0 84% 60%;
     --thai-red-foreground: 0 0% 100%;
     --shadow-elevated: 0 4px 20px rgba(0, 0, 0, 0.1);
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 0%;
-    --sidebar-primary: 162 100% 40%;
+    --sidebar-primary: 162 100% 30%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 89%;
     --sidebar-accent-foreground: 0 0% 0%;
     --sidebar-border: 0 0% 67%;
-    --sidebar-ring: 162 100% 40%;
+    --sidebar-ring: 162 100% 30%;
   }
 
   .dark {
@@ -46,32 +47,32 @@
     --card-foreground: 0 0% 100%;
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 100%;
-    --primary: 162 100% 40%; /* 00CE93 */
-    --primary-foreground: 0 0% 0%;
-    --primary-light: 162 100% 50%;
-    --primary-dark: 162 100% 30%;
+    --primary: 162 100% 30%; /* Darker green */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 162 100% 35%;
+    --primary-dark: 162 100% 25%;
     --secondary: 0 0% 10%;
     --secondary-foreground: 0 0% 100%;
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 67%;
-    --accent: 162 100% 40%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 162 100% 30%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 15%;
     --input: 0 0% 10%;
-    --ring: 162 100% 40%;
+    --ring: 162 100% 30%;
     --thai-red: 0 84% 60%;
     --thai-red-foreground: 0 0% 100%;
     --shadow-elevated: 0 4px 20px rgba(0, 0, 0, 0.3);
     --sidebar-background: 0 0% 5%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 162 100% 40%;
-    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-primary: 162 100% 30%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 0 0% 10%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 162 100% 40%;
+    --sidebar-ring: 162 100% 30%;
   }
 }
 

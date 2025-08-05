@@ -1,3 +1,4 @@
+
 import { Calendar, AlertTriangle, CheckCircle } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -39,6 +40,18 @@ const mockDocuments: Document[] = [
     daysUntilExpiry: 890
   }
 ];
+
+const maskIdNumber = (number: string, type: string) => {
+  // Only mask ID card numbers (บัตรประจำตัวประชาชน)
+  if (type === 'บัตรประจำตัวประชาชน') {
+    // Format: 1-2345-67890-12-3 -> 1-xxxx-xxxxx-xx-3
+    const parts = number.split('-');
+    if (parts.length === 5) {
+      return `${parts[0]}-xxxx-xxxxx-xx-${parts[4]}`;
+    }
+  }
+  return number;
+};
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -85,7 +98,7 @@ const DocumentStatus = () => {
       <CardHeader>
         <CardTitle className="flex items-center space-x-2">
           <Calendar className="h-5 w-5 text-primary" />
-          <span>{t('docs.title')}</span>
+          <span>สถานะเอกสารสำคัญ</span>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6">
@@ -93,7 +106,7 @@ const DocumentStatus = () => {
           <div key={doc.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 rounded-lg bg-gradient-to-r from-background to-muted/50 border border-border space-y-3 sm:space-y-0">
             <div className="flex-1">
               <h3 className="font-medium text-foreground text-sm sm:text-base">{doc.type}</h3>
-              <p className="text-xs sm:text-sm text-muted-foreground">{doc.number}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">{maskIdNumber(doc.number, doc.type)}</p>
               <p className="text-xs text-muted-foreground">หมดอายุ: {doc.expiryDate}</p>
             </div>
             <div className="flex items-center justify-between sm:justify-end space-x-2 sm:space-x-3">
