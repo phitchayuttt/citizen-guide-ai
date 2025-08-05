@@ -1,10 +1,10 @@
-import { Bell, User, Menu, MessageCircle, Home } from "lucide-react";
+import { User, Menu, MessageCircle, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
+import NotificationPanel from "@/components/NotificationPanel";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -59,14 +59,7 @@ const Header = () => {
               <LanguageToggle />
             </div>
             {/* Notifications */}
-            <div className="relative">
-              <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-white/10 h-8 w-8 sm:h-10 sm:w-10">
-                <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
-              </Button>
-              <Badge className="absolute -top-0 -right-0 sm:-top-1 sm:-right-1 h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center p-0 text-xs bg-thai-red">
-                3
-              </Badge>
-            </div>
+            <NotificationPanel />
 
             {/* User Profile */}
             <div className="flex items-center space-x-1 sm:space-x-3">

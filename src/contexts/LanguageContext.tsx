@@ -13,8 +13,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations = {
   th: {
     // Header
-    'header.title': 'ระบบบริการประชาชน',
-    'header.subtitle': 'AI Government Services Recommendation',
+    'header.title': 'GovBotAI',
+    'header.subtitle': 'ผู้ช่วย AI สำหรับบริการรัฐ',
     'header.home': 'หน้าหลัก',
     'header.aiAssistant': 'ผู้ช่วย AI',
     'header.userName': 'นายสมชาย ใจดี',
@@ -73,8 +73,8 @@ const translations = {
   },
   en: {
     // Header
-    'header.title': 'Citizen Services System',
-    'header.subtitle': 'AI Government Services Recommendation',
+    'header.title': 'GovBotAI',
+    'header.subtitle': 'AI Assistant for Government Services',
     'header.home': 'Home',
     'header.aiAssistant': 'AI Assistant',
     'header.userName': 'Mr. Somchai Jaidee',

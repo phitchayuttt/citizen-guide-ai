@@ -8,6 +8,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import Index from "./pages/Index";
 import ChatPage from "./pages/ChatPage";
 import NotFound from "./pages/NotFound";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 const queryClient = new QueryClient();
 
@@ -19,12 +20,15 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/chat" element={<ChatPage />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <div className="pb-16 md:pb-0">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/chat" element={<ChatPage />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <MobileBottomNav />
+            </div>
           </BrowserRouter>
         </TooltipProvider>
       </LanguageProvider>
