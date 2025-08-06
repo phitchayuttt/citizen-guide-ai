@@ -67,7 +67,12 @@ const Header = () => {
                 <p className="text-sm font-medium text-primary-foreground">{t('header.userName')}</p>
                 <p className="text-xs text-primary-foreground/80">{t('header.userId')}</p>
               </div>
-              <Button variant="ghost" size="icon" className="text-primary-foreground hover:bg-white/10 h-8 w-8 sm:h-10 sm:w-10">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="text-primary-foreground hover:bg-white/10 h-8 w-8 sm:h-10 sm:w-10"
+                onClick={() => navigate('/profile')}
+              >
                 <User className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </div>
