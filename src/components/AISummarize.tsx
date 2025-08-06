@@ -1,4 +1,5 @@
-import { Sparkles, ExternalLink, Clock, MapPin } from "lucide-react";
+import React, { useState } from "react";
+import { Sparkles, ExternalLink, Clock, MapPin, RefreshCw } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -74,6 +75,20 @@ const getPriorityText = (priority: string) => {
 };
 
 const AISummarize = () => {
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [recommendations, setRecommendations] = useState(mockRecommendations);
+
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    // Simulate API call delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Shuffle recommendations to simulate new data
+    const shuffled = [...mockRecommendations].sort(() => Math.random() - 0.5);
+    setRecommendations(shuffled);
+    setIsRefreshing(false);
+  };
+
   return (
     <Card className="shadow-[var(--shadow-elevated)]">
       <CardHeader className="bg-gradient-to-r from-primary to-primary-light text-primary-foreground rounded-t-lg">
@@ -86,7 +101,13 @@ const AISummarize = () => {
         </p>
       </CardHeader>
       <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-        {mockRecommendations.map((rec) => (
+        {isRefreshing ? (
+          <div className="flex flex-col items-center justify-center py-12 space-y-4">
+            <RefreshCw className="h-8 w-8 animate-spin text-primary" />
+            <p className="text-muted-foreground">กำลังอัปเดตคำแนะนำ...</p>
+          </div>
+        ) : (
+          recommendations.map((rec) => (
           <div key={rec.id} className="border border-border rounded-lg p-3 sm:p-5 bg-gradient-to-br from-card to-muted/30 hover:shadow-[var(--shadow-card)] transition-shadow">
             <div className="flex flex-col space-y-3 mb-3">
               <div className="flex-1">
@@ -135,15 +156,30 @@ const AISummarize = () => {
               </Button>
             </div>
           </div>
-        ))}
+        ))
+        )}
         
         <div className="text-center pt-4 border-t border-border">
           <p className="text-sm text-muted-foreground mb-3">
             💡 ระบบอัปเดตคำแนะนำตามข้อมูลล่าสุดของคุณอัตโนมัติ
           </p>
-          <Button variant="thai">
-            รีเฟรชคำแนะนำ
-            <Sparkles className="h-4 w-4 ml-2" />
+          <Button 
+            variant="thai" 
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+            className={isRefreshing ? "opacity-50 cursor-not-allowed" : ""}
+          >
+            {isRefreshing ? (
+              <>
+                <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                กำลังอัปเดต...
+              </>
+            ) : (
+              <>
+                รีเฟรชคำแนะนำ
+                <Sparkles className="h-4 w-4 ml-2" />
+              </>
+            )}
           </Button>
         </div>
       </CardContent>
